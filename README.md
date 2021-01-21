@@ -85,7 +85,7 @@ When we have a real dataset, we can do this analysis in three steps. First, coun
 
 ### Counting k-mers
 
-Below is a script (including a SLURM header for UConn's Xanadu cluster) that was used to count k-mers for a North American tree species (_Acer saccharum_) with a 320mb genome sequenced to 80x coverage on the Illumina platform:
+Below is a script (including a SLURM header for UConn's Xanadu cluster) that was used to count k-mers for a North American tree species (_Acer saccharum_) with a 320mb genome sequenced to 80x coverage on the Illumina platform. See [our documentation](https://github.com/CBC-UCONN/CBC_Docs/wiki/Requesting-resource-allocations-in-SLURM) on requesting resources if you don't know what's going on in the header. 
 
 ```bash
 #!/bin/bash
