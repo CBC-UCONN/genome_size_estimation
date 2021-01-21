@@ -37,13 +37,13 @@ And fc, the k-mer frequency spectrum looks like this, because the frequency 1 ap
 | ---------- | ---|
 | 1 | 7 |
 
-If you were to chop up a real genome in this way, some k-mers would appear many times because genomes usually contain repetitive sequences. However, for k-mer values in the 20s and above, only a few k-mers will occur multiple times at random. For random sequences at equal base frequencies, the probability of any single k-mer of k=21 is 4^-21 = 2.2 * 10^-13. 
+If you were to chop up a real genome in this way, some k-mers would appear many times because genomes usually contain repetitive sequences. However, for k-mer values in the 20s and above, only a few k-mers will occur multiple times at random and **most** will be unique. For random sequences at equal base frequencies, the probability of any single k-mer of k=21 is 4^-21 = 2.2 * 10^-13. 
 
 So any given sequence of length G has Kn = G - Kl + 1 k-mers of length Kl. For typical focal k-mer lengths of 15-30bp and genomes in the millions to billions of bases, the number of bases in the (haploid) genome, G, is approximately equal to the number of k-mers. 
 
-Above, we discussed decomposing a genome into constituent k-mers. What we want to do, however, is infer genome length from a collection of unassembled sequence data. 
+Above, we discussed decomposing a single genome into constituent k-mers. What we want to do, however, is infer genome length from a collection of unassembled sequence data, usually collected from a library containing many thousands of copies of the genome. 
 
-For a collection of Rn short reads of uniform length Rl, the number of k-mers that can be extracted is Knr = Rn * (Rl - Kl + 1). When dealing with sequencing data, which can generally come from either strand, _canonical_ k-mers are usually considered. For canonical k-mers, sequences and their reverse complements are equivalent. So AGAG and CTCT form a single canonical 4-mer. There are half as many canonical k-mers, but at k=21, the probability of sampling them multiple times by chance is still low. 
+For a collection of Rn short reads of uniform length Rl, the number of k-mers that can be extracted is KnS = Rn * (Rl - Kl + 1). When dealing with sequencing data, which can generally come from either strand, _canonical_ k-mers are usually considered. For canonical k-mers, sequences and their reverse complements are equivalent. So AGAG and CTCT form a single canonical 4-mer. There are half as many canonical k-mers, but at k=21, the probability of sampling them multiple times by chance is still low. 
 
 Ok, so once we chop up our sequencing data and get this k-mer spectrum (more about that shortly), how do we figure out the length, G, of our genome? 
 
