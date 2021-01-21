@@ -36,6 +36,7 @@ And fc looks like this, because the frequency 1 appears 7 times:
 | 1 | 7 |
 
 
+
  and fc=(7). So our k-mer "spectrum", in this case is a single pair of numbers, , because each of our 7 kmers occurs only once. 
 
 
