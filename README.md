@@ -29,34 +29,28 @@ To get all 10-mers from that sequence, simply take each substring from bases 1-1
 | GCCTCATTGC | 1 |
 
 
-And fc looks like this, because the frequency 1 appears 7 times:
+And fc, the k-mer frequency spectrum looks like this, because the frequency 1 appears 7 times:
 
 | k-mer frequency | frequency |
 | ---------- | ---|
 | 1 | 7 |
 
-
-
- and fc=(7). So our k-mer "spectrum", in this case is a single pair of numbers, , because each of our 7 kmers occurs only once. 
-
+If you were to chop up a real genome in this way, some k-mers would appear many times because genomes usually contain repetitive sequences. However, for k-mer values in the 20s and above, only a few k-mers will occur multiple times at random. For random sequences at equal base frequencies, the probability of any single k-mer of k=21 is 4^-21 = 2.2 * 10^-13. 
 
 So any given sequence of length G has Kn = G - Kl + 1 k-mers of length Kl. For typical focal k-mer lengths of 15-30bp and genomes in the millions to billions of bases, the number of bases in the (haploid) genome, G, is approximately equal to the number of k-mers. 
 
-For a collection of Rn short reads of uniform length Rl, the number of k-mers that can be extracted is Knr = Rn * (Rl - Kl + 1). When dealing with sequencing data, which can generally come from either strand, _canonical_ k-mers are usually considered. For canonical k-mers, sequences and their reverse complements are equivalent. So AGAG and CTCT form a single canonical 4-mer. 
+Above, we discussed decomposing a genome into constituent k-mers. What we want to do, however, is infer genome length from a collection of unassembled sequence data. 
 
-Ok, so once we get this k-mer spectrum (more about that shortly), how do we figure out the length, G, of our genome? First we have to take one more short step. Above we noted that Cb = Bn/G. With our k-mer spectrum we can come up with an analog: Ck = KnS/Kn. The expected frequency (or coverage) of a genomic k-mer in our sequencing data (Ck) equals the total number of k-mers in the sequencing data (KnS) divided by the number of k-mers in the genome. As we noted above, as long as we're working with short k-mer lengths and large genomes, Kn is about equal to the genome length. 
+For a collection of Rn short reads of uniform length Rl, the number of k-mers that can be extracted is Knr = Rn * (Rl - Kl + 1). When dealing with sequencing data, which can generally come from either strand, _canonical_ k-mers are usually considered. For canonical k-mers, sequences and their reverse complements are equivalent. So AGAG and CTCT form a single canonical 4-mer. There are half as many canonical k-mers, but at k=21, the probability of sampling them multiple times by chance is still low. 
+
+Ok, so once we chop up our sequencing data and get this k-mer spectrum (more about that shortly), how do we figure out the length, G, of our genome? 
+
+First we have to take one more short step. Above we noted that Cb = Bn/G. With our k-mer spectrum we can come up with an analog: Ck = KnS/Kn. The expected frequency (or coverage) of a genomic k-mer in our sequencing data (Ck) equals the total number of k-mers in the sequencing data (KnS) divided by the number of k-mers in the genome. As we noted above, as long as we're working with short k-mer lengths and large genomes, Kn is about equal to the genome length. 
 
 So, finally, let's look at how we learn Ck from the k-mer spectrum. 
 
+In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome 
+
+<img src="images/fig1_k_mer_spectrum.pdf" alt="drawing" width="400"/>
 
 
-
-    1. calculate kmer frequency spectrum. 
-        - the frequency, f, of kmers with frequency c in the read data
-    2. for a haploid genome
-
-
-```R
-# peak #1
-c1 <- 
-```

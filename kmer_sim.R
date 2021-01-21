@@ -20,7 +20,7 @@ G <- 100000
 	# set an arbitrary translation vector to "mutate" the homologous chromosome
 	mut <- c(A="T",C="G",G="C",T="A")
 	# heterozygosity (fraction of heterozygous sites)
-	hz <- 0.01
+	hz <- 0.00
 	# expected number of variable sites
 	nvar <- round(hz * G)
 
@@ -61,7 +61,7 @@ rchrom <- sample(1:2,rn,replace=TRUE)
 
 # how many errors should the read have?
 	# per read error rate
-	e <- 0.001 * rl
+	e <- 0.000 * rl
 	# add error to this many reads
 	rerror <- round(e * rn)
 	# place error in these positions:
