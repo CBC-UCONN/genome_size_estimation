@@ -132,7 +132,7 @@ This script invokes `jellyfish histo` and provides the output file from the prev
 
 ### Modeling the k-mer spectrum
 
-There are two versions of `GenomeScope`. The original version has a webserver and is suitable for analysis of diploid genomes. Version 2 is implemented as [an R package](https://github.com/tbenavi1/genomescope2.0) and extends the method to deal with polyploid genomes. Here we're going to use the original version. To run it yourself, download the k-mer spectrum for [_Acer negundo_](acer_saccharum_21mer_out.histo) and upload it to the [GenomeScope webserver](http://qb.cshl.edu/genomescope/). 
+There are two versions of `GenomeScope`. The original version has a webserver and is suitable for analysis of diploid genomes. Version 2 is implemented as [an R package](https://github.com/tbenavi1/genomescope2.0) and extends the method to deal with polyploid genomes. Here we're going to use the original version. To run it yourself, download the k-mer spectrum for [_Acer negundo_](acer_negundo_21mer_out.histo) and upload it to the [GenomeScope webserver](http://qb.cshl.edu/genomescope/). 
 
 This file uses k=21. There is an option to limit analysis to k-mer frequencies greater than some threshold. This is to exclude high frequency sequence artifacts and high copy organellar DNA, which would inflate the estimate of the genome size. Here the default of 1000 is fine. 
 
@@ -140,7 +140,15 @@ Our results look like this:
 
 <img src="images/genomescope_out.jpg" alt="drawing" width="1000"/>
 
-The blue histogram represents our actual data. 
+The blue histogram represents our actual k-mer spectrum. `GenomeScope` represents a the k-mer spectrum as a mixture of types of sequence (errors, unique, multi-copy). The curves represent components of the mixture. The vertical lines represent inferred peaks in k-mer abundance. Here the tallest peak is unique, homozygous k-mers, while the peak to the left represents unique heterozygous k-mers. You can see that this is considerably muddier than in the simulated figures above. The subheader for the figure gives estimates from the model:
+
+	- genome length: 318mb
+	- the fraction of the genome that is unique: 76%
+	- heterozygosity: 1.06%
+	- the coverage of unique, heterozygous k-mers: 48
+	- the sequencing error rate: 0.149%
+	- the rate of duplicate fragments in the sequencing library: 5.17%
+
 
 ## References
 
