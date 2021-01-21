@@ -85,7 +85,7 @@ When we have a real dataset, we can do this analysis in three steps. First, coun
 
 ### Counting k-mers
 
-Below is a script (including a SLURM header for UConn's Xanadu cluster) that was used to count k-mers for a plant with a 320mb genome sequenced to 80x coverage on the Illumina platform:
+Below is a script (including a SLURM header for UConn's Xanadu cluster) that was used to count k-mers for a North American tree species (_Acer saccharum_) with a 320mb genome sequenced to 80x coverage on the Illumina platform:
 
 ```bash
 #!/bin/bash
@@ -115,7 +115,7 @@ Below is a script (including a SLURM header for UConn's Xanadu cluster) that was
 #SBATCH --job-name=jf21-h
 #SBATCH -N 1
 #SBATCH -n 1
-#SBATCH -c 8
+#SBATCH -c 1
 #SBATCH --partition=general
 #SBATCH --qos=general
 #SBATCH --mail-type=END
@@ -129,5 +129,7 @@ jellyfish histo -o 21mer_out.histo 21mer_out
 ```
 
 This script invokes `jellyfish histo` and provides the output file from the previous step. It requires much fewer processors and less memory than the intial counting. 
+
+### Modeling the k-mer spectrum
 
 
