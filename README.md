@@ -81,7 +81,7 @@ There are many further complications to consider, like repetitive elements, orga
 
 ## Genome profiling using `GenomeScope` and `jellyfish`
 
-When we have a real dataset, we can do this analysis in three steps. First, count k-mers, second count k-mer frequencies, and finally, model the k-mer spectrum. We'll do steps one and two in [`jellyfish`](https://github.com/gmarcais/Jellyfish) and step 3 in [`GenomeScope`](http://qb.cshl.edu/genomescope/).  
+When we have a real dataset, we can do this analysis in three steps. First, count k-mers, second count k-mer frequencies, and finally, model the k-mer spectrum. We'll do steps one and two in [`jellyfish`](https://github.com/gmarcais/Jellyfish) and step 3 in [`GenomeScope`](http://qb.cshl.edu/genomescope/). As mentioned above, we need the data to have a fairly low error rate, so Illumina data is what's usually used for this. As we're counting k-mers, we'd also ideally do some QC on the data beforehand, trimming out adapters and low quality sequence if there is a lot of it (see [here](https://github.com/CBC-UCONN/RNAseq_nonmodel#2-quality-control) for an example). 
 
 ### Counting k-mers
 
@@ -140,7 +140,7 @@ Our results look like this:
 
 <img src="images/genomescope_out.jpg" alt="drawing" width="1000"/>
 
-The blue histogram represents our actual k-mer spectrum. `GenomeScope` represents a the k-mer spectrum as a mixture of types of sequence (errors, unique, multi-copy). The curves represent components of the mixture. The vertical lines represent inferred peaks in k-mer abundance. Here the tallest peak is unique, homozygous k-mers, while the peak to the left represents unique heterozygous k-mers. You can see that this is considerably muddier than in the simulated figures above. The subheader for the figure gives estimates from the model:
+The blue histogram represents our actual k-mer spectrum. `GenomeScope` represents a the k-mer spectrum as a mixture of types of sequence (errors, unique, multi-copy). The curves represent components of the mixture. The vertical lines represent inferred peaks in k-mer abundance. Here the tallest peak is unique, homozygous k-mers, while the peak to the left represents unique heterozygous k-mers. You can see that this is considerably muddier than in the simulated figures above: k-mers attributed to sequencing error reach much higher frequency than 4, as we assumed above, and the homozygous and heterozygous peaks are so wide that they overlap much more than in the simulated data. The subheader for the figure gives estimates from the model:
 
 	- genome length: 318mb
 	- the fraction of the genome that is unique: 76%
