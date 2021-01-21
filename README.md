@@ -45,17 +45,26 @@ For a collection of Rn short reads of uniform length Rl, the number of k-mers th
 
 Ok, so once we chop up our sequencing data and get this k-mer spectrum (more about that shortly), how do we figure out the length, G, of our genome? 
 
-First we have to take one more short step. Above we noted that Cb = Bn/G. With our k-mer spectrum we can come up with an analog: Ck = KnS/Kn. The expected frequency (or coverage) of a genomic k-mer in our sequencing data (Ck) equals the total number of k-mers in the sequencing data (KnS) divided by the number of k-mers in the genome. As we noted above, as long as we're working with short k-mer lengths and large genomes, Kn is about equal to the genome length. 
+First we have to take one more short step. Above we noted that Cb = Bn/G. With our k-mer spectrum we can come up with an analog: 
+
+Ck = KnS/Kn. 
+
+The expected frequency (or coverage) of a genomic k-mer in our sequencing data (Ck) equals the total number of k-mers in the sequencing data (KnS) divided by the number of k-mers in the genome. As we noted above, as long as we're working with short k-mer lengths and large genomes, Kn is about equal to the genome length. 
 
 So, finally, let's look at how we learn Ck from the k-mer spectrum. 
 
-In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome with 100bp reads at 60x coverage, our k-mer spectrum looks like this: 
+In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome with 100bp reads at 60x coverage and k=21, our k-mer spectrum looks like this: 
 
 <img src="images/fig1_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
 
-The mean k-mer frequency is the red line, at 48.6, right on par with the expected frequency, and right about at the peak of the distribution. 
+The mean k-mer frequency is the red line, at 48.60924, right on par with the expected frequency, and right about at the peak of the distribution. So with KnS = 60,000 * (100-20+1) = 4860000 and Ck = 48.60924, we get Kn = 99,981. 
 
 If we incorporate sequencing error, things get dramatically different. This is the same simulation with a 0.001% base error rate:
 
 <img src="images/fig2a_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
+
+Sequencing error produces many rare k-mers, leading to the spike at low frequencies in the spectrum. This lowers the average dramatically to 24 and leads to an overestimate of genome size at 194kb. The peak of the distribution is still near 48.6 though, implying that we could simply exclude these low frequency k-mers and recalculate. 
+
+<img src="images/fig2b_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
+
 
