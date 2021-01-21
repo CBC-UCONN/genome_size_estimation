@@ -51,6 +51,6 @@ So, finally, let's look at how we learn Ck from the k-mer spectrum.
 
 In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome 
 
-<img src="images/fig1_k_mer_spectrum.jpg" alt="drawing" width="400"/>
+<img src="images/fig1_k_mer_spectrum.jpg" alt="drawing" width="500"/>
 
 
