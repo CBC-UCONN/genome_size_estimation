@@ -12,12 +12,21 @@ We can easily tally up Bn. But is there a way to learn C and thus figure out G w
     2. Calculate the frequency (fk) of each unique k-mer. 
     3. Calculate the frequency (fc) of the frequencies of k-mers (fk). 
 
-This can be a little confusing because the k-mer frequency spectrum gives the frequency of frequencies of k-mers, but this is key so take a moment to wrap your brain around it. To make it a little more concrete, consider this 16bp sequence and it's 10bp k-mers below:
+This can be a little confusing because the k-mer frequency spectrum gives the frequency of frequencies of k-mers, but this is key so take a moment to wrap your brain around it. To make it a little more concrete, consider this 16bp sequence and its 10bp k-mers below:
 
 <img src="images/kmers.jpg" alt="drawing" width="200"/>
 
 To get all 10-mers from that sequence, simply take each substring from bases 1-10,2-11,... This results in 16 - 10 + 1 = 7 k-mers, each one unique. So fk=(1,1,1,1,1,1,1) and fc=(7). So our k-mer "spectrum", in this case is a single pair of numbers, , because each of our 7 kmers occurs only once. 
 
+| k-mer      | fk |
+| ---------- | ---|
+| TCAAGCGCCT | 1 |
+| CAAGCGCCTC | 1 |
+| AAGCGCCTCA | 1 |
+| AGCGCCTCAT | 1 |
+| GCGCCTCATT | 1 |
+| CGCCTCATTG | 1 |
+| GCCTCATTGC | 1 |
 
 
 So any given sequence of length G has Kn = G - Kl + 1 k-mers of length Kl. For typical focal k-mer lengths of 15-30bp and genomes in the millions to billions of bases, the number of bases in the (haploid) genome, G, is approximately equal to the number of k-mers. 
