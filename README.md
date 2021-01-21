@@ -49,8 +49,13 @@ First we have to take one more short step. Above we noted that Cb = Bn/G. With o
 
 So, finally, let's look at how we learn Ck from the k-mer spectrum. 
 
-In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome 
+In an ideal world, where we have no sequencing bias, no sequencing error, and no heterozygosity, we can simply calculate the average Ck is the average k-mer frequency. This is the mean of fk. If we do a simple simulation of a 100kb genome with 100bp reads at 60x coverage, our k-mer spectrum looks like this: 
 
 <img src="images/fig1_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
 
+The mean k-mer frequency is the red line, at 48.6, right on par with the expected frequency, and right about at the peak of the distribution. 
+
+If we incorporate sequencing error, things get dramatically different. This is the same simulation with a 0.001% base error rate:
+
+<img src="images/fig2a_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
 
