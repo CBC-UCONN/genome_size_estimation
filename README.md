@@ -81,7 +81,7 @@ There are many further complications to consider, like repetitive elements, orga
 
 ## Genome profiling using `GenomeScope` and `jellyfish`
 
-When we have a real dataset, we can do this analysis in three steps. First, count k-mers, second count k-mer frequencies, and finally, model the k-mer spectrum. We'll do steps one and two in `jellyfish` and step 3 in `GenomeScope`.  
+When we have a real dataset, we can do this analysis in three steps. First, count k-mers, second count k-mer frequencies, and finally, model the k-mer spectrum. We'll do steps one and two in [`jellyfish`](https://github.com/gmarcais/Jellyfish) and step 3 in [`GenomeScope`](http://qb.cshl.edu/genomescope/).  
 
 ### Counting k-mers
 
@@ -104,7 +104,7 @@ module load jellyfish/2.2.6
 jellyfish count -t 30 -C -m 21 -s 100G -o 21mer_out *fastq
 ```
 
-This script invokes `jellyfish count` and uses 30 processors (`-t 30`) to count canonical k-mers (`-C`) of length 21 (`-m 21`). We specify an initial hash size of 100gb, but jellyfish can expand that if necessary. In the SLURM header we request 475gb of memory, as k-mer counting in a large dataset can be very memory intensive. We used `*fastq` to match all fastq files in the current directory, but you can also write them out explicitly as the last arguments in the script. 
+This script invokes `jellyfish count` and uses 30 processors (`-t 30`) to count canonical k-mers (`-C`) of length 21 (`-m 21`). We specify an initial hash size of 100gb, but jellyfish can expand that if necessary. In the SLURM header we request 475gb of memory and use a himem node, as k-mer counting in a large dataset can be very memory intensive. We used `*fastq` to match all fastq files in the current directory, but you can also write them out explicitly as the last arguments in the script. 
 
 ### Counting k-mer frequencies
 
@@ -132,4 +132,13 @@ This script invokes `jellyfish histo` and provides the output file from the prev
 
 ### Modeling the k-mer spectrum
 
+There are two versions of `GenomeScope`. The original version has a webserver and is suitable for analysis of diploid genomes. Version 2 is implemented as [an R package](https://github.com/tbenavi1/genomescope2.0) and extends the method to deal with polyploid genomes. Here we're going to use the original version. To run it yourself, download the k-mer spectrum for [_Acer saccharum_](acer_saccharum_21mer_out.histo) and upload it to the [GenomeScope webserver](http://qb.cshl.edu/genomescope/). 
 
+
+## References
+
+Marçais, Guillaume, and Carl Kingsford. "A fast, lock-free approach for efficient parallel counting of occurrences of k-mers." Bioinformatics 27.6 (2011): 764-770.
+
+Ranallo-Benavidez, T. Rhyker, Kamil S. Jaron, and Michael C. Schatz. "GenomeScope 2.0 and Smudgeplot for reference-free profiling of polyploid genomes." Nature communications 11.1 (2020): 1-10.
+
+Vurture, Gregory W., et al. "GenomeScope: fast reference-free genome profiling from short reads." Bioinformatics 33.14 (2017): 2202-2204.
