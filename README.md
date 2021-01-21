@@ -1,6 +1,8 @@
+# Estimating genome size from raw, unassembled sequencing data
+
 When doing genome sequencing projects, something we often want to know _a priori_, but don't, is the approximate size of the genome. We can get an estimate of this from raw, unassembled sequencing data provided the coverage is high enough and the error rate is low enough (you can't use nanopore reads for this!)
 
-There are a few ways to do this. We'll illustrate the basic concept first and how features of real data complicate things, and then move on to using a piece of software called `genomescope`. 
+There are a few ways to do this. We'll illustrate the basic concept first and how features of real data complicate things, and then move on to using a piece of software called `GenomeScope`. 
 
 When sequencing a genome, some key numbers are the size  of the haploid genome (let's call that G), the total number of bases sequenced by the researcher (call that Bn) and the sequencing coverage, or the expected number of times each base in the genome has been sequenced (call that Cb). Consider that: 
 
@@ -67,4 +69,14 @@ Sequencing error produces many rare k-mers, leading to the spike at low frequenc
 
 <img src="images/fig2b_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
 
+Indeed, we recover a Ck of 47 and wind up with an estimate of 99,994. 
 
+What about when we have heterozygosity in a diploid organism? Things get more complicated still:
+
+<img src="images/fig3a_k_mer_spectrum.jpg" alt="drawing" width="1000"/>
+
+Now we see two peaks. The left peak corresponds to k-mers overlapping heterozygous sites. Their frequency is cut in half compared to expectations. The right peak corresponds to homozygous k-mers. If we use the right peak as Ck, we would recover the true genome size. 
+
+There are many further complications to consider, like repetitive elements, organellar DNA, ploidy > 2, and biases in sequencing, so it is useful to use a more complex method that has been developed to model all these aspects of k-mer frequency spectrum implemented in `GenomeScope`. This has the added advantage that it allows you to estimate the fraction of single-copy DNA, the level of heterozygosity, and the sequencing error rate. 
+
+###Genome profiling using `GenomeScope` and `jellyfish`
