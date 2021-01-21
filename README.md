@@ -14,7 +14,7 @@ We can easily tally up Bn. But is there a way to learn C and thus figure out G w
 
 This can be a little confusing because the k-mer frequency spectrum gives the frequency of frequencies of k-mers, but this is key so take a moment to wrap your brain around it. To make it a little more concrete, consider this 16bp sequence and it's 10bp k-mers below:
 
-![](images/kmers.jpg=250x)
+<img src="images/kmers.jpg" alt="drawing" width="200"/>
 
 To get all 10-mers from that sequence, simply take each substring from bases 1-10,2-11,... This results in 16 - 10 + 1 = 7 k-mers, each one unique. So fk=(1,1,1,1,1,1,1) and fc=(7). So our k-mer "spectrum", in this case is a single pair of numbers, , because each of our 7 kmers occurs only once. 
 
