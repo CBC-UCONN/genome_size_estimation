@@ -77,7 +77,7 @@ What about when we have heterozygosity in a diploid organism? Things get more co
 
 Now we see two peaks. The left peak corresponds to k-mers overlapping heterozygous sites. Their frequency is cut in half compared to expectations. The right peak corresponds to homozygous k-mers. If we use the right peak as Ck, we would recover the true genome size. 
 
-There are many further complications to consider, like repetitive elements, organellar DNA, ploidy > 2, and biases in sequencing, so it is useful to use a more complex method that has been developed to model all these aspects of k-mer frequency spectrum implemented in `GenomeScope`. This has the added advantage that it allows you to estimate the fraction of single-copy DNA, the level of heterozygosity, and the sequencing error rate. 
+There are many further complications to consider, like repetitive elements, organellar DNA, ploidy > 2, and biases in sequencing, so it is helpful to use a more complex method,  implemented in `GenomeScope`, that has been developed to model all these aspects of k-mer frequency spectrum. This has the added advantage that it allows you to estimate the fraction of single-copy DNA, the level of heterozygosity, and the sequencing error rate. 
 
 ## Genome profiling using `GenomeScope` and `jellyfish`
 
